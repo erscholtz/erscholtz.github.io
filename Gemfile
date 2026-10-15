@@ -1,10 +1,6 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-ruby ">= 3.3"
-gem "jekyll", "~> 4.4.1"
-gem "webrick", "~> 1.9"
-
-platforms :windows do
-  gem "tzinfo", "~> 2.0"
-  gem "tzinfo-data"
-end
+gem 'phlex', '>= 2.4.1'
+gem 'jekyll', '~> 4.4'
+gem 'webrick', '~> 1.8'
+gem 'tzinfo-data', platforms: [:windows, :jruby]
