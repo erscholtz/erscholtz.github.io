@@ -1,26 +1,15 @@
 require "phlex"
 require "fileutils"
 
-class HomePage < Phlex::HTML
-  def view_template
-    doctype
+require_relative "src/routing"
 
-    html(lang: "en") do
-      head do
-        meta(charset: "utf-8")
-        meta(name: "viewport", content: "width=device-width, initial-scale=1")
-        title { "erscholtz" }
-      end
+output_dir = File.join(__dir__, "dist")
+pages = Routing.routes
 
-      body do
-        main do
-          h1 { "Hi, I'm Erik" }
-          p { "Welcome to my personal site." }
-        end
-      end
-    end
-  end
+pages.each do |path, component|
+  directory = File.join(output_dir, path)
+  FileUtils.mkdir_p(directory)
+  File.write(File.join(directory, "index.html"), component.call)
 end
 
-FileUtils.mkdir_p("dist")
-File.write("dist/index.html", HomePage.new.call)
+FileUtils.cp_r(File.join(__dir__, "assets"), output_dir)

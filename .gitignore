@@ -1,0 +1,6 @@
+/dist/
+/_site/
+/src/dist/
+
+/.jekyll-cache/
+/.jekyll-metadata
